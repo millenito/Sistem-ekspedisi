@@ -10,29 +10,30 @@ class MdDistrictprices extends Model
     use HasFactory;
 
     protected $table = 'md_districtprices';
+    protected $fillable = ['districtprice_code', 'branch_code', 'branch_dest_code', 'district_dest_code', 'service_code', 'goods_type_code', 'weight', 'price', 'created_by', 'updated_by', 'is_active'];
 
     public function branch()
     {
-        return $this->hasOne(MdBranches::class, 'branch_code', 'branch_code');
+        return $this->belongsTo('App\Models\MdBranches', 'branch_code', 'branch_code');
     }
 
     public function branchdest()
     {
-        return $this->hasOne(MdBranches::class, 'branch_code', 'branch_dest_code');
+        return $this->belongsTo('App\Models\MdBranches', 'branch_code', 'branch_dest_code');
     }
 
     public function districtdest()
     {
-        return $this->hasOne(MdBranches::class, 'district_code', 'district_dest_code');
+        return $this->belongsTo('App\Models\MdDistricts', 'district_code', 'district_dest_code');
     }
 
     public function service()
     {
-        return $this->hasOne(MdCodes::class, 'service_code', 'code_code');
+        return $this->belongsTo('App\Models\MdCodes', 'service_code', 'code_code');
     }
 
     public function goodstype()
     {
-        return $this->hasOne(MdCodes::class, 'goods_type_code', 'code_code');
+        return $this->belongsTo('App\Models\MdCodes', 'goods_type_code', 'code_code');
     }
 }

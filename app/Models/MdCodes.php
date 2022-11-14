@@ -10,4 +10,10 @@ class MdCodes extends Model
     use HasFactory;
 
     protected $table = 'md_codes';
+    protected $fillable = ['code_codegroup', 'code_code', 'code_name', 'code_descr', 'created_by', 'updated_by', 'is_active'];
+
+    public function groupcode()
+    {
+        return $this->belongsTo('App\Models\MdGroupCodes', 'code_code', 'code_codegroup');
+    }
 }
