@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravolt\Epicentrum\Http\Controllers\User;
+namespace App\Http\Controllers\User;
 
 use Laravolt\Epicentrum\Contracts\Requests\Account\Update;
 
@@ -22,7 +22,7 @@ class AccountController extends UserController
         $multipleRole = config('laravolt.epicentrum.role.multiple');
         $roleEditable = config('laravolt.epicentrum.role.editable');
 
-        return view('laravolt::account.edit', compact('user', 'statuses', 'timezones', 'roles', 'multipleRole', 'roleEditable'));
+        return view('account.edit', compact('user', 'statuses', 'timezones', 'roles', 'multipleRole', 'roleEditable'));
     }
 
     /**
@@ -38,7 +38,7 @@ class AccountController extends UserController
         try {
             $this->repository->updateAccount($id, $request->except('_token', '_method'), $request->get('roles', []));
 
-            return redirect()->back()->withSuccess(trans('laravolt::message.account_updated'));
+            return redirect()->back()->withSuccess(trans('message.account_updated'));
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         }

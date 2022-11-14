@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('laravolt::users.index');
+        return view('users.index');
     }
 
     /**
@@ -56,7 +56,7 @@ class UserController extends Controller
         $multipleRole = config('laravolt.epicentrum.role.multiple');
         $timezones = $this->timezone->all();
 
-        return view('laravolt::users.create', compact('statuses', 'roles', 'multipleRole', 'timezones'));
+        return view('users.create', compact('statuses', 'roles', 'multipleRole', 'timezones'));
     }
 
     /**
@@ -80,7 +80,7 @@ class UserController extends Controller
             Mail::to($user)->send(new AccountInformation($user, $password));
         }
 
-        return redirect()->route('epicentrum::users.index')->withSuccess(trans('laravolt::message.user_created'));
+        return redirect()->route('users.index')->withSuccess(trans('laravolt::message.user_created'));
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return redirect(route('epicentrum::account.edit', $id));
+        return redirect(route('account.edit', $id));
     }
 
     public function destroy(Delete $request, $id)
@@ -100,7 +100,7 @@ class UserController extends Controller
         try {
             $this->repository->delete($id);
 
-            return redirect(route('epicentrum::users.index'))->withSuccess(trans('laravolt::message.user_deleted'));
+            return redirect(route('users.index'))->withSuccess(trans('laravolt::message.user_deleted'));
         } catch (QueryException $e) {
             return redirect()->back()->withError($e->getMessage());
         }
