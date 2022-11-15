@@ -14,6 +14,6 @@ class MdCodes extends Model
 
     public function groupcode()
     {
-        return $this->belongsTo('App\Models\MdGroupCodes', 'code_code', 'code_codegroup');
+        return $this->belongsTo(MdGroupCodes::class, 'code_codegroup', 'code_code');
     }
 }

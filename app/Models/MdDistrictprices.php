@@ -19,12 +19,12 @@ class MdDistrictprices extends Model
 
     public function branchdest()
     {
-        return $this->belongsTo('App\Models\MdBranches', 'branch_code', 'branch_dest_code');
+        return $this->belongsTo('App\Models\MdBranches', 'branch_dest_code', 'branch_code');
     }
 
     public function districtdest()
     {
-        return $this->belongsTo('App\Models\MdDistricts', 'district_code', 'district_dest_code');
+        return $this->belongsTo('App\Models\MdDistricts', 'district_dest_code', 'district_code');
     }
 
     public function service()

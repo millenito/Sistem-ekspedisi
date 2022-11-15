@@ -13,7 +13,7 @@ class MdGroupCodes extends Model
 
     public function codes()
     {
-        return $this->hasMany('App\Models\MdCodes', 'code_codegroup', 'code_code');
+        return $this->hasMany('App\Models\MdCodes', 'code_code', 'code_codegroup');
 
     }
 
