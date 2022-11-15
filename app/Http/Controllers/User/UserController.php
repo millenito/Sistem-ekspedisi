@@ -12,6 +12,7 @@ use Laravolt\Epicentrum\Mail\AccountInformation;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Laravolt\Platform\Models\User;
 use Laravolt\Support\Contracts\TimezoneRepository;
+use App\Models\MdBranches;
 
 class UserController extends Controller
 {
@@ -54,9 +55,10 @@ class UserController extends Controller
         $statuses = $this->repository->availableStatus();
         $roles = app('laravolt.epicentrum.role')->all()->pluck('name', 'id');
         $multipleRole = config('laravolt.epicentrum.role.multiple');
+        $branches = MdBranches::all()->pluck('branch_name', 'branch_code')->toArray();
         $timezones = $this->timezone->all();
 
-        return view('users.create', compact('statuses', 'roles', 'multipleRole', 'timezones'));
+        return view('users.create', compact('statuses', 'roles', 'multipleRole', 'timezones', 'branches'));
     }
 
     /**

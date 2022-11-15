@@ -4,10 +4,12 @@
 
     {!! form()->bind($user)->open()->put()->action(route('account.update', $user['id']))->horizontal() !!}
 
+    {!! form()->text('user_code')->label(trans('Kode User'))->required() !!}
     {!! form()->text('name')->label(__('laravolt::users.name')) !!}
     {!! form()->text('email')->label(__('laravolt::users.email')) !!}
     {!! form()->dropdown('status', $statuses)->label(__('laravolt::users.status')) !!}
-    {!! form()->dropdown('timezone', $timezones)->label(__('laravolt::users.timezone')) !!}
+    {{-- {!! form()->dropdown('timezone', $timezones)->label(__('laravolt::users.timezone')) !!} --}}
+    {!! form()->select('user_branch_code', $branches)->label(__('Cabang'))->required() !!}
 
     @if($multipleRole)
         {!! form()->checkboxGroup('roles', $roles)->label(trans('laravolt::users.roles'))->addClassIf(!$roleEditable, 'disabled') !!}
@@ -15,6 +17,7 @@
         {!! form()->radioGroup('roles', $roles)->label(trans('laravolt::users.roles'))->addClassIf(!$roleEditable, 'disabled') !!}
     @endif
 
+    {!! form()->hidden('timezone', $timezones) !!}
 
     @unless($roleEditable)
         <div class="field">
@@ -24,7 +27,7 @@
     @endif
 
 
-    {!! form()->action(form()->submit(__('laravolt::action.save')), form()->link(__('laravolt::action.back'), route('users.index'))) !!}
+    {!! form()->action(form()->submit(__('Save')), form()->link(__('Cancel'), route('users.index'))) !!}
     {!! form()->close() !!}
 
 

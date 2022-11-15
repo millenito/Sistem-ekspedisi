@@ -21,7 +21,7 @@ class UserTable extends TableView
     {
         $searchabledColumns = config('laravolt.epicentrum.repository.searchable', []);
         $query = app(config('laravolt.epicentrum.models.user'))
-            ->with('roles')
+            ->with(['roles','branch'])
             ->autoSort($this->sortPayload())
             ->autoFilter()
             ->whereLike($searchabledColumns, trim($this->search))
@@ -37,6 +37,12 @@ class UserTable extends TableView
             Avatar::make('name', ''),
             Text::make('name', trans('laravolt::users.name'))->sortable(),
             Text::make('email', trans('laravolt::users.email'))->sortable(),
+            Raw::make(
+                function ($data) {
+                    return $data->branch->branch_name;
+                },
+                trans('Cabang')
+            ),
             Raw::make(
                 function ($data) {
                     return $data->roles->implode('name', ', ');

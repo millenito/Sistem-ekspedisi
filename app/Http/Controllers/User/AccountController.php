@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use Laravolt\Epicentrum\Contracts\Requests\Account\Update;
+use App\Models\MdBranches;
 
 class AccountController extends UserController
 {
@@ -21,8 +22,9 @@ class AccountController extends UserController
         $roles = app('laravolt.epicentrum.role')->all()->pluck('name', 'id');
         $multipleRole = config('laravolt.epicentrum.role.multiple');
         $roleEditable = config('laravolt.epicentrum.role.editable');
+        $branches = MdBranches::all()->pluck('branch_name', 'branch_code')->toArray();
 
-        return view('account.edit', compact('user', 'statuses', 'timezones', 'roles', 'multipleRole', 'roleEditable'));
+        return view('account.edit', compact('user', 'statuses', 'timezones', 'roles', 'multipleRole', 'roleEditable', 'branches'));
     }
 
     /**

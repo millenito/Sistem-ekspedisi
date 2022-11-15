@@ -21,5 +21,10 @@ class User extends \Laravolt\Platform\Models\User
      */
     protected $hidden = ['password', 'remember_token'];
 
-    protected $fillable = ['name', 'email', 'username', 'password', 'status', 'timezone'];
+    protected $fillable = ['user_code', 'user_branch_code', 'name', 'email', 'username', 'password', 'status', 'timezone'];
+
+    public function branch()
+    {
+        return $this->belongsTo(MdBranches::class, 'user_branch_code', 'branch_code');
+    }
 }
