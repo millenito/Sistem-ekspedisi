@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'Main Menu' => [
+    'Informasi' => [
         'menu' => [
-            'Operasional' => [
+            'Dashboard' => [
                 'route' => 'attendance.index',
             ],
-            'Informasi' => [
+            'Lacak Resi' => [
                 'route' => 'schedule.index',
             ],
         ],
