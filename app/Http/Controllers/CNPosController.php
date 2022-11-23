@@ -86,7 +86,18 @@ class CNPosController extends Controller
 
     public function getprice(Request $request)
     {
-        $data = MdDistrictprices::where('service_code', $request->cn_service)->first();
+
+        $user = auth()->user();
+
+        $data = MdDistrictprices::where([
+            'branch_code' => $user->user_branch_code,
+            // 'district_dest_code' => $request->cn_destcity,
+            'service_code' => $request->cn_service,
+            // 'goods_type_code' => $request->cn_goods_type,
+            'weight' => 1,
+        ])->first();
+
+        dd($data);
         echo json_encode($data);
     }
 }

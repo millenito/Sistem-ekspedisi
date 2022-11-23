@@ -21,8 +21,9 @@
         @endphp
         {!!  form()->dropdownDB('cn_goods_type', $query, 'id', 'name')->label('Jenis Pengiriman')->id('goods_type')->required() !!}
 
-        {!! form()->number('cn_qty')->label('Koli')->min(0)->id('qty')->required() !!}
-        {!! form()->number('cn_weight')->label('Berat')->min(0)->id('weight')->required() !!}
+        {!! form()->number('cn_qty')->id('cn_qty')->label('Koli')->required() !!}
+        {!! form()->number('cn_weight')->id('cn_weight')->label('Berat')->required() !!}
+
         {!! form()->rupiah('cn_freightcharge_amount')->label('Biaya Kirim')->id('freightcharge')->readonly()->required() !!}
 
     </x-volt-panel>
@@ -47,27 +48,37 @@
         {!! form()->action(form()->submit(__('Save')), form()->link(__('Cancel'), route('pos.create'))) !!}
         {!! form()->close() !!}
 
-        @push('body')
-            <script>
-                $(function () {
-                    
-                    $('#weight').on('change', function (e) {
-                        $.ajax({
-                            url: '/getprice',
-                            type: 'post',
-                            data: {},
-                            dataType: 'json',
-                            success: function(data) {
-                                if (data.success == true) {
-                                    $("#iname").value = data.info;
-                                    alert("sucecess");
-                                } else {
-                                    alert('Cannot find info');
-                                }
-                            }
-                        });
-                    });
-                });
-            </script>
-        @endpush
 </x-volt-app>
+
+<script>
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '<?= csrf_token() ?>'
+            }
+        });
+
+        $('#cn_qty').on('change', function (e) {
+            let cn_destcity = $('#destcity').val()
+            let cn_service = $('#service').val()
+            let cn_goods_type = $('#goods_type').val()
+            let cn_qty = $('#cn_qty').val()
+            let cn_weight = $('#cn_weight').val()
+            $.ajax({
+                url: "{{ route('pos.getprice') }}",
+                type: 'post',
+                data: {
+                    cn_destcity: cn_destcity,
+                    cn_service: cn_service,
+                    cn_goods_type: cn_goods_type,
+                    cn_qty: cn_qty,
+                    cn_weight: cn_weight
+                },
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data)
+                }
+            });
+        });
+    });
+</script>
