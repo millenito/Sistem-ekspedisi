@@ -24,7 +24,7 @@
         {!! form()->number('cn_qty')->id('cn_qty')->label('Koli')->required() !!}
         {!! form()->number('cn_weight')->id('cn_weight')->label('Berat')->required() !!}
 
-        {!! form()->rupiah('cn_freightcharge_amount')->label('Biaya Kirim')->id('freightcharge')->readonly()->required() !!}
+        {!! form()->number('cn_freightcharge_amount')->id('cn_freightcharge_amount')->label('Biaya Kirim')->readonly()->required() !!}
 
     </x-volt-panel>
 
@@ -58,7 +58,7 @@
             }
         });
 
-        $('#cn_qty').on('change', function (e) {
+        $('#cn_weight').on('change', function (e) {
             let cn_destcity = $('#destcity').val()
             let cn_service = $('#service').val()
             let cn_goods_type = $('#goods_type').val()
@@ -76,7 +76,11 @@
                 },
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data)
+                    if (data == 0){
+                        alert('Harga Tidak Tersedia!')
+                    }else{
+                        $('#cn_freightcharge_amount').val(data)
+                    }
                 }
             });
         });
