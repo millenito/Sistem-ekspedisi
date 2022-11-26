@@ -22,6 +22,7 @@ class TxConnotes extends Model
         'cn_branchdestination_code',
         'cn_destcity',
         'cn_shipper_name',
+        'cn_transactionstatus',
         'cn_shipper_adress',
         'cn_shipper_phone',
         'cn_shipper_email',

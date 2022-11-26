@@ -11,4 +11,9 @@ class MdBranches extends Model
 
     protected $table = 'md_branches';
     protected $fillable = ['branch_code', 'branch_name', 'branch_address', 'branch_phone', 'created_by', 'updated_by', 'is_active'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', '=', 1);
+    }
 }

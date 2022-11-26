@@ -16,4 +16,9 @@ class MdDistricts extends Model
     {
         return $this->belongsTo('App\Models\MdBranches', 'branch_code', 'branch_code');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', '=', 1);
+    }
 }

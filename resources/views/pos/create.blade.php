@@ -32,7 +32,7 @@
 
         {!! form()->text('cn_shipper_name')->label('Nama')->required() !!}
         {!! form()->text('cn_shipper_adress')->label('Alamat')->required() !!}
-        {!! form()->text('cn_shipper_phone')->label('No.Telp')->required() !!}
+        {!! form()->number('cn_shipper_phone')->label('No.Telp')->required() !!}
         {!! form()->text('cn_shipper_email')->label('Email') !!}
 
     </x-volt-panel>
@@ -41,7 +41,7 @@
 
         {!! form()->text('cn_receiver_name')->label('Nama')->required() !!}
         {!! form()->text('cn_receiver_adress')->label('Alamat')->required() !!}
-        {!! form()->text('cn_receiver_phone')->label('No.Telp')->required() !!}
+        {!! form()->number('cn_receiver_phone')->label('No.Telp')->required() !!}
         {!! form()->text('cn_receiver_email')->label('Email') !!}
 
     </x-volt-panel>

@@ -29,11 +29,11 @@ return new class extends Migration
             $table->string('cn_shipper_name', 30);
             $table->string('cn_shipper_adress', 120);
             $table->string('cn_shipper_phone', 30);
-            $table->string('cn_shipper_email', 30);
+            $table->string('cn_shipper_email', 30)->nullable();
             $table->string('cn_receiver_name', 30);
             $table->string('cn_receiver_adress', 120);
             $table->string('cn_receiver_phone', 30);
-            $table->string('cn_receiver_email', 30);
+            $table->string('cn_receiver_email', 30)->nullable();
             $table->string('created_by')->default('ADMIN');
             $table->string('updated_by')->default('ADMIN');
             $table->boolean('is_active')->default(true); 
