@@ -26,6 +26,7 @@ Route::middleware(['auth', 'verified'])
                         Route::post('password/{id}/generate', Generate::class)->name('password.generate');
 
                         Route::resource('pos', CNPosController::class)->only('create','store');
+                        Route::get('pos/success', [CNPosController::class, 'success'])->name('pos.success');
                         Route::post('pos/getprice', [CNPosController::class, 'getprice'])->name('pos.getprice');
                     }
             );

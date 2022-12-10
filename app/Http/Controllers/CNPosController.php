@@ -48,7 +48,8 @@ class CNPosController extends Controller
 
         $cn_no = '';
         if ($request->cn_no == '' || $request->cn_no == null) {
-            $no = IdGenerator::generate(['table' => 'tx_connotes', 'field'=>'id', 'length' => 5, 'prefix'=>'0']);
+            $lastId = TxConnotes::select('id')->orderBy('id','desc')->first();
+            $no = str_pad((string) $lastId->id,5,"0",STR_PAD_LEFT);
             $cn_no = 'CN'.$no;
         }else{
             $cn_no = $request->cn_no;
@@ -94,9 +95,19 @@ class CNPosController extends Controller
 
         DB::commit();
 
-        return redirect()->route('pos.create')->withSuccess('Berhasil membuat transaski');
+        return redirect()->route('pos.success')->with('cn', $cn_no);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function success()
+    {
+        // return view('pos.create', compact('statuses', 'roles', 'multipleRole', 'timezones', 'branches'));
+        return view('pos.success');
+    }
     /**
      * Display the specified resource.
      *
