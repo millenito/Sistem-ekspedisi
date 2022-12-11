@@ -8,6 +8,7 @@ use App\Http\Controllers\User\Password\Generate;
 use App\Http\Controllers\User\Password\PasswordController;
 use App\Http\Controllers\User\Password\Reset;
 use App\Http\Controllers\CNPosController;
+use App\Http\Controllers\TrackingController;
 
 Route::redirect('/', 'auth/login');
 
@@ -28,6 +29,8 @@ Route::middleware(['auth', 'verified'])
                         Route::resource('pos', CNPosController::class)->only('create','store');
                         Route::get('pos/success', [CNPosController::class, 'success'])->name('pos.success');
                         Route::post('pos/getprice', [CNPosController::class, 'getprice'])->name('pos.getprice');
+
+                        Route::get('tracking/index', [TrackingController::class, 'index'])->name('tracking');
                     }
             );
         }

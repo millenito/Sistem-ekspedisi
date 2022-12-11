@@ -49,4 +49,9 @@ class TxConnotes extends Model
     {
         return $this->belongsTo('App\Models\MdDistricts', 'cn_destcity', 'district_code');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', '=', 1);
+    }
 }

@@ -4,10 +4,10 @@ return [
     'Informasi' => [
         'menu' => [
             'Dashboard' => [
-                'route' => 'attendance.index',
+                'route' => 'home',
             ],
             'Lacak Resi' => [
-                'route' => 'schedule.index',
+                'route' => 'tracking',
             ],
         ],
     ],
