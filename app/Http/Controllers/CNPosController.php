@@ -87,7 +87,7 @@ class CNPosController extends Controller
         $hist->cn_processdatetime = date('Y-m-d H:i:s');
         $hist->cn_processno = $cn_no;
         $hist->cn_processcode = 'EN';
-        $hist->cn_processdesc = 'Entri oleh: ('. $auth_user->user_code .') Di Lokasi : ('. $user->branch->branch_name .')';
+        $hist->cn_processdesc = 'Entri oleh: ('. $auth_user->name .') Di Lokasi : ('. $user->branch->branch_name .')';
         $hist->created_by = $auth_user->user_code;
         $hist->updated_by = $auth_user->user_code;
         $hist->is_active = '1';
