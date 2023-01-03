@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tx_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('cn_no', 30)->unique();
+            $table->string('cn_no', 30);
             $table->timestamp('cn_processdatetime');
             $table->string('cn_processno', 10);
             $table->string('cn_processcode', 10);
