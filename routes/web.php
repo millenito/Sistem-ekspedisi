@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])
                         Route::post('pos/getprice', [CNPosController::class, 'getprice'])->name('pos.getprice');
 
                         Route::get('tracking/index', [TrackingController::class, 'index'])->name('tracking');
+                        Route::post('tracking/getlaststatus', [TrackingController::class, 'getlaststatus'])->name('tracking.getlaststatus');
                     }
             );
         }

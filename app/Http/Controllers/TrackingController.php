@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TxHistory;
 
 class TrackingController extends Controller
 {
@@ -80,5 +81,12 @@ class TrackingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getlaststatus(Request $request)
+    {
+        $data = TxHistory::where('cn_no', $request->cn_no)->orderBy('cn_processdatetime', 'desc')->first();
+
+        echo json_encode($data);
     }
 }
